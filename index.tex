@@ -1,0 +1,405 @@
+\input{preamble}
+\usepackage{multirow}
+\usepackage{array}
+
+\title{Would I ever Lie Group to you?}
+\author{\small{Apurva Nakade}}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+\vspace{2em}
+\epigraph{It has long been an axiom of mine that the little things are infinitely the most important.}{Sherlock Holmes\\}
+
+\section{Introduction}
+\vspace{2em}
+
+Lie Groups are groups that are also smooth manifolds. We further require that the product and the inverse maps be smooth. Lie Groups typically arise as symmetries of smooth spaces along with some extra structure, the simplest such mathematical objects are vector spaces over $\R$ and $\C$ whose symmetries groups are the matrix groups. In this class, we'll start by analyzing the group theoretic properties of matrix groups and then focus on some of their special subgroups which have direct connections to geometry, physics, and number theory.
+
+This is an IBL class. All the relevant theory will be built through problems. The table on the next page has all the definitions which you should read and understand as you need. The (*) on the problems indicate their difficulty level. You're free to do the problems that you find interesting and assume the rest to be true, or ask for answers or hints or whatever. {Live your own life.}
+
+\newpage
+\noindent \textbf{Definitions: }
+\begin{center}
+	\begin{tabular}{l c l}
+		$I $ & $=$ & Identity Matrix \\
+		$A^T$ & $=$ & Transpose of $A $ \\
+		$A^*$ & $=$ & Transpose + complex conjugate of $A$ \\
+		$\det A$ & $=$ & Determinant of $A$\\
+	\end{tabular}
+\end{center}
+\begin{center}
+	\setlength\extrarowheight{10pt}
+	\begin{tabular}{|l|c|l|}
+		\hline
+		                                & $M_{n \times n}(\R)$        & $n \times n$ matrices with entries in $\R$                         \\\hline
+		\multirow{2}{*}{General Linear Group}
+		                                & \multirow{2}{*}{$GL_n(\R)$} & $\{ n \times n \mbox{ invertible matrices with entries in } \R \}$ \\
+		                                &                             & $\cong \{ A \in M_{n \times n}(\R) : \det A \neq 0\}$              \\\hline
+		Orientation Preserving Matrices & $GL^+_n(\R)$                & $\{ A \in GL_{n \times n}(\R) : \det A > 0\}$                      \\\hline
+		Orthogonal Group                & $O(n)$                      & $\{ A \in GL_{n \times n}(\R) : A^TA = I\}$                        \\\hline
+		Special Linear Group            & $SL_n(\R)$                  & $\{ A \in GL_{n \times n}(\R) : \det A =1\}$                       \\\hline
+		Special Orthogonal Group        & $SO(n)$                     & $O(n) \cap SL_n(\R)$                                               \\\hline
+    Upper Triangular Matrices & $UT_n(\R)$ & Invertible matrices with only 0's below the diagonal \\\hline
+		                                & $M_{n \times n}(\C)$        & $n \times n$ matrices with entries in $\C$                         \\\hline
+		\multirow{2}{*}{General Linear Group}
+		                                & \multirow{2}{*}{$GL_n(\C)$} & $\{ n \times n \mbox{ invertible matrices with entries in } \C \}$ \\
+		                                &                             & $\cong \{ A \in M_{n \times n}(\C) : \det A \neq 0\}$              \\\hline
+		Unitary Group                   & $U(n)$                      & $\{ A \in GL_{n \times n}(\C) : A^*A = I\}$                        \\\hline   Special Linear Group & $SL_n(\C)$ & $\{ A \in GL_{n \times n}(\C) : \det A =1\}$ \\\hline
+		Special Unitary Group           & $SU(n)$                     & $U(n) \cap SL_n(\C)$                                               \\\hline
+	\end{tabular}
+\end{center}
+
+\begin{align*}
+                                   \xymatrix{
+  SO(n) \ar@{^{(}->}[r] \ar@{^{(}->}[dr] & SL(n) \ar@{^{(}->}[r]  & GL_n^+(\R) \ar@{^{(}->}[r] & GL_n(\R) \\
+	                                       & O(n) \ar@{^{(}->}[urr]
+	}
+\end{align*}
+\begin{align*}
+                                   \xymatrix{
+  	SU(n) \ar@{^{(}->}[r]                  & U(n) \ar@{^{(}->}[r]   & GL_n(\C)
+  	}
+\end{align*}
+
+
+
+
+
+\newpage
+\section{Group Theoretic Properties of Matrix Groups}
+\begin{question}
+	Prove that $GL_n(\R)$ is a group under matrix multiplication. Is it a group under addition?
+\end{question}
+
+\begin{question}
+	Prove that the map $\det$ defines a group homomorphism $GL_n(\R) \rightarrow \R^\times$, the group of non-zero reals. Hence prove that $SL_n(\R)$ is a normal subgroup of $GL_n(\R)$.
+\end{question}
+
+\begin{question}
+	Identify $GL^+_n(\R)$ as the kernel of a group homomorphism $GL_n(\R) \rightarrow G$ from some group $G$. Hence prove that $GL^+_n(\R)$ is a normal subgroup of $GL_n(\R)$. Further show that $SL_n(\R)$ is a normal subgroup of $GL^+_n(\R)$.
+\end{question}
+
+\begin{question}
+  Prove that $O(n)$ and $SO(n)$ are groups.
+\end{question}
+
+\begin{question}
+	Using the map $\det$ identify the quotient groups
+	\begin{enumerate}
+		\item $GL_n(\R)/SL_n(\R)$
+		\item $GL_n(\R)/GL^+_n(\R)$
+		\item $GL^+_n(\R)/SL_n(\R)$
+		\item $O(n)/SO(n)$
+	\end{enumerate}
+\end{question}
+
+Note that $M_{n \times n}(\R)$ is naturally isomorphic to $\R^{n^2}$, hence $GL_n(\R)$ can be naturally thought of as a subset of $\R^{n^2}$ , so we can talk about connectedness of its subsets.
+\begin{question}
+	Prove that $GL_n(\R)$ and $O(n)$ are not connected.\footnote{A subset $X \subseteq \R^n$ is not connected if there exists two points $p,q \in X$ such that there is no continuous path lying entirely in $X$ connecting $p$ to $q$.}
+\end{question}
+\begin{remark}
+	$GL_n(\C)$ and $GL^+_n(\R)$ are connected spaces. This fact is surprisingly hard to prove. Can you think of a way to do this?
+\end{remark}
+
+\begin{question}
+	Prove that $GL_n(\C)$ is a group under matrix multiplication. Is it a group under addition?
+\end{question}
+
+\begin{question}
+	Prove that $\det$ is a group homomorphism from $GL_n(\C)$ to $\C^\times$, the group of non-zero complex numbers. Hence prove that $SL_n(\C)$ is a normal subgroup of $GL_n(\C)$.
+\end{question}
+
+\begin{question}
+  Prove that $U(n)$ and $SU(n)$ are groups.
+\end{question}
+
+\begin{question}
+	Using the map $\det$ identify the following quotient groups
+	\begin{enumerate}
+		\item $GL_n(\C)/SL_n(\C)$
+		\item $U(n)/SU(n)$
+	\end{enumerate}
+\end{question}
+
+\begin{question}$ $
+  \begin{enumerate}
+    \item Show that the inclusion $\R \hookrightarrow \C$ induces a natural inclusion
+    \begin{align*}
+      \mathcal{I}: GL_n(\R) \hookrightarrow GL_n(\C)
+    \end{align*}
+    Show that $\mathcal{I}$ is a group homomorphism.
+    \item Show that $\mathcal{I}(SL_n(\R)) \subseteq SL_n(\C)$, $\mathcal{I}(O(n)) \subseteq U(n)$ and $\mathcal{I}(SO(n)) \subseteq SU(n)$.
+    \item* As a vector space over $\R$, the complex numbers $\C$ are isomorphic to $\R^2$. Show that this induces a natural map
+    \begin{align*}
+      \mathcal{J}: GL_n(\C) \rightarrow GL_{2n}(\R)
+    \end{align*}
+    Show that $\mathcal{J}$ is a group homomorphism. Is $\mathcal{J}$ a surjection?
+    \item Explicitly describe the compositions $\mathcal{I} \circ \mathcal{J}$ and $\mathcal{J} \circ \mathcal{I}$.
+		\item** Show that $\mathcal{J}(SL_n(\C)) \subseteq SL_{2n}(\R)$, $\mathcal{J}(U(n)) \subseteq O(2n)$ and $\mathcal{J}(SU(n)) \subseteq SO(n)$.
+  \end{enumerate}
+\end{question}
+
+
+
+
+
+
+\newpage
+\section{Orthogonal Groups}
+\begin{question}
+	Show that $A \in GL_n(\R)$ if and only if the columns of $A$ form a basis for $\R^n$.
+\end{question}
+
+\begin{question}
+		Show that $A \in O(n)$ if and only if the columns of $A$ form an orthonormal basis for $\R^n$. Find the corresponding statement for $U(n)$.
+\end{question}
+
+\begin{question}
+	Explicitly describe the matrices in $O(2)$. Which of these matrices are in $SO(2)$?\\ What linear transformations do these geometrically represent?
+\end{question}
+
+\begin{thm}[Spectral Theorem]
+	For every matrix $A$ in $U(n)$ there exists a matrix $P \in U(n)$ and a diagonal matrix $D \in GL_n(\C)$ such that
+	\begin{align*}
+		A = P^* D P
+	\end{align*}
+	The entries of $D$ are called the \textbf{eigenvalues} of $A$. This is also true for $O(n)$ thought of as a subgroup of $U(n)$ ($P$ still needs to be in $U(n)$ and $D$ can have complex entries). For $A \in O(n)$ it is further true that if $\lambda \in \C$ is an eigenvalue then so is $\conj \lambda$.
+\end{thm}
+
+\begin{question}
+	What can you say about the eigenvalues of matrices in $U(n)$, $SU(n)$, $O(n)$, $SO(n)$?
+\end{question}
+
+
+
+\begin{question}
+	\label{q:so3_rotations}
+	Show that if $A \in SO(3)$ then 1 is an eigenvalue of $A$. Argue that, there exists a basis of $\R^3$ in which $A$ looks like
+	\begin{align*}
+		\begin{bmatrix}
+			1 & 0 & 0 \\
+			0 & \cos \theta & -\sin \theta \\
+			0 & \sin \theta & \cos \theta
+		\end{bmatrix}
+	\end{align*}
+	i.e. every matrix in $SO(3)$ is a rotation of $\R^3$ about an axis by some angle $\theta$.
+\end{question}
+
+\begin{question}*
+  Prove that $UT_n(\R)$ is a group.
+\end{question}
+
+\begin{question} \label{q:uniqueness_qr} $ $
+  \begin{enumerate}
+    \item
+    Find $SO(n) \cap UT_n(\R)$.
+    \item* Suppose we are given matrices $Q_1, Q_2 \in O(n)$ and $R_1, R_2 \in UT_n(\R)$ such that all the diagonal entries of $R_1, R_2$ are positive. Prove that if
+    \begin{align*}
+      Q_1 R_1 = Q_2 R_2
+    \end{align*}
+    then $Q_1 = Q_2$ and $R_1 = R_2$.
+  \end{enumerate}
+\end{question}
+
+\newpage
+\begin{definition}
+	The \textbf{Gram-Schmidt orthonormalization} process takes as input an arbitrary basis for $\R^n$ and produces an orthonormal basis. Let $v_1, v_2, \dots, v_n$ be a basis of $\R^n$. The orthonormal basis is constructed by the following inductive algorithm:
+	\begin{mdframed}
+		\begin{enumerate}
+			\item Let $e_1 = \frac{v_1}{\norm{v_1}}$.
+			\item Assume that we have computed $e_1, \dots, e_k$. Define
+			\begin{align*}
+				e'_{k+1} = v_{k+1} - (v_{k+1} \cdot e_1)e_1 - (v_{k+1}\cdot e_2)e_2 \dots - (v_{k+1} \cdot e_k)e_k
+			\end{align*}
+			(Here $\cdot$ stands for the dot product.)
+			\item Let $e_{k+1} = \frac{e'_{k+1}}{\norm{e'_{k+1}}}$.
+			\item Repeat steps b) and c) until we have $e_1, \dots, e_n$.
+		\end{enumerate}
+	\end{mdframed}
+\end{definition}
+
+
+	\begin{question}*
+	  Prove that the tuple $(e_1, \dots, e_n)$ that is the output of the Gram-Schmidt orthonormalization is an orthonormal basis of $\R^n$.
+	\end{question}
+
+	\begin{question}*
+	  \label{q:Gram-Schmidt}
+	  Prove that the Gram-Schmidt orthonormalization is equivalent to the following statement:
+
+	  For every matrix $A \in GL_n(\R)$ there exists an orthogonal matrix $Q$ and an upper triangular matrix $R$ with positive diagonal entries, such that $$A = QR$$
+		Combining this with Question \ref{q:uniqueness_qr} we get what is called the \textbf{QR decomposition} of a matrices.
+	\end{question}
+
+\begin{question}*
+    \label{q:normality}
+  Prove that $O(2)$ and $UT_2(\R)$ are not normal subgroups of $GL_2(\R)$. This is more generally true for all higher dimensions.
+\end{question}
+
+\begin{question}
+  Question \ref{q:Gram-Schmidt} seems to suggest that $GL_n(\R)/O(n) \cong UT_n(\R)$ and $GL_n(\R)/UT_n(\R) \cong O(n)$. But this would imply that $O(n)$ and $UT_n(\R)$ are normal subgroups of $GL_n(\R)$, however this contradicts Question \ref{q:normality}. How does one resolve this paradox?
+\end{question}
+
+
+
+\newpage
+\section{Mobius transforms and $SL_2(\C)$}
+\begin{definition}
+	For $\begin{bmatrix}a & b \\ c & d\end{bmatrix} \in SL_{2}(\C)$ define the \textbf{Mobius transform} $M^{a,b}_{c,d}(z)$ as\footnote{Here we are setting $ M^{a,b}_{c,d}(-d/c) = \infty\quad$ and $ M^{a,b}_{c,d}(\infty) = a/c$ etc.}
+	\begin{align*}
+		M^{a,b}_{c,d}: \C \cup \{ \infty \} \rightarrow \C \cup \{ \infty \} \qquad
+		z \mapsto \dfrac{az + b}{cz + d}
+	\end{align*}
+		Define the set $\mathcal{M}$ of Mobius transformations to be the set of such transformations i.e. $z \mapsto \dfrac{az + b}{cz + d}$ with $ad - bc = 1$.
+
+\end{definition}
+\begin{question}
+	Show that if $\begin{bmatrix}p & q \\ r & s\end{bmatrix} \begin{bmatrix}a & b \\ c & d\end{bmatrix}  = \begin{bmatrix}e & f \\ g & h\end{bmatrix}$ then $M^{a,b}_{c,d} \left( M^{p,q}_{r,s} (z) \right)= M^{e,f}_{g,h}(z)$.
+\end{question}
+\begin{question}
+	Show that the Mobius transformations form a group and
+			there a natural surjective group homomorphism $$ \varphi: SL_2(\C) \rightarrow \mathcal{M}$$
+\end{question}
+
+\begin{question}
+	Show that the kernel of $\varphi$ is isomorphic to $\Z/2$.
+\end{question}
+\begin{remark}
+	The above problems imply that the group of Mobius transforms is isomorphic to $SL_2(\C)/(\Z/2)$. This group is called the \textbf{Projective Special Linear Group}, denoted $PSL_2(\C)$.
+\end{remark}
+
+\begin{question}
+	Show that the Mobius transforms corresponding to the matrices in $SL_2(\R)$ send the upper half plane to the upper half plane i.e.
+	\begin{align*}
+		\mbox{ if $\im(z) \ge 0$ and $\begin{bmatrix}a & b \\ c & d\end{bmatrix} \in SL_{2}(\R)$ then $\im\left(M^{a,b}_{c,d}(z)\right) \ge 0$. }
+	\end{align*}
+\end{question}
+Mobius transforms can also be thought of as taking the unit disk to the unit disk after a ``change of basis''.
+\begin{question}$ $
+	\begin{enumerate}
+		\item Show that the Mobius transform $\sigma(z) = i\dfrac{1+z}{1-z}$ sends the unit disk in $\C$ ($\norm{z} \le 1$) to the upper half plane ($\im(z) \ge 0$).
+		\item Argue that for $\begin{bmatrix}a & b \\ c & d\end{bmatrix} \in SL_{2}(\R)$ the transformation $\sigma \circ M^{a,b}_{c,d}(z) \circ \sigma^{-1}$ takes the unit disc to itself.
+	\end{enumerate}
+\end{question}
+
+The upper half plane and the unit disc are models of universal hyperbolic (constant Gaussian curvature -1) surfaces. Other hyperbolic surfaces can be obtained from these by quotienting by subgroups of $PSL_2(\R)$. Of particular importance are the discrete subgroups of $PSL_2(\R)$ called the Fuchsian groups. Quotienting the upper half plane by these gives rise to hyperbolic Riemann surfaces.
+
+\newpage
+
+If we further restrict the entries $a, b, c, d$ to be integers we get the subgroup of $PSL_2(\R)$ called the \textbf{modular group} $PSL_2(\Z)$.
+
+\begin{enumerate}
+	\item Show that $S=\begin{bmatrix}1 & 1 \\ 0 & 1\end{bmatrix}$, $T=\begin{bmatrix}0 & 1 \\ -1 & 0\end{bmatrix}$ are in $SL_2(\Z)$.
+	\item** Show that $S, T$ generate $SL_2(\Z)$.
+\end{enumerate}
+
+\begin{question}
+	For a positive integer $n$, show that the sets of matrices of the form $A = \begin{bmatrix}a & b \\ c & d\end{bmatrix}$ in $SL_2(\Z)$ as defined below
+	\begin{align*}
+		\Gamma(n) &:= \{ \quad a,d \equiv 1 \mod n, \quad b,c \equiv 0 \mod n \quad \} \\
+		\Gamma_0(n) &:= \{ \quad  c \equiv 0 \mod n  \quad \} \\
+		\Gamma_1(n) &:= \{ \quad  a,d \equiv 1 \mod n, \quad c \equiv 0 \mod n  \quad \} \\
+		\Lambda(n) &:= \{ \quad  ac \equiv 0 \mod n, \quad bd \equiv 0 \mod n  \quad \} \\
+		\end{align*}
+		are groups. These are examples of \textbf{congruence subgroups} of the modular group.
+\end{question}
+
+The modular group and the congruence subgroups are extremely important in number theory as the quotient of the upper half plane by these groups is the space on which various modular forms live.
+
+
+
+\newpage
+\section{$\mathrm{Spin}(3)$: The double cover of $SO(3)$}
+\begin{definition}
+	Define the algebra of \textbf{quaternions} as
+	\begin{align*}
+		\mathbb{H} = \{ \: a_0 + a_i i + a_j j + a_k k :& \: a_0, a_1, a_2, a_3 \in \R, \\
+		&i^2 = j^2 = k^2 = ijk = -1 \: \}
+	\end{align*}
+	Here $i,j,k$ are formal variables. (Just to clarify the notation: $-1 = -1 + 0i + 0j + 0k$.)
+	A quaternion is a unit quaternion if $a_0^2 + a_1^2 + a_2^2 + a_3^2 = 1$. Denote the set of \textbf{unit quaternions} by $u \mathbb{H}$.
+\end{definition}
+\textbf{Notation: } We'll denote the quaternions by bold letters $\mathbf{a}, \mathbf{b}$ etc. \begin{align*}
+	\mathbf{a} &= a_0 + a_i i + a_j j + a_k k \\
+	\conj{\mathbf{a}} &:= a_0 - a_i i - a_j j - a_k k\\
+	\norm{\mathbf{a}} &:= a_0^2 + a_1^2 + a_2^2 + a_3^2\\
+	\mathrm{Re}(\mathbf{a}) &:= a_0 \qquad\mbox{ (the real part of $\mathbf{a}$)}
+\end{align*}
+
+\begin{question}
+	Show that $\mathbf{a} \conj{\mathbf{a}} = \norm{a}$ and hence if $\mathbf{a} \in u \mathbb{H}$ then $\mathbf{a}^{-1} \in u \mathbb{H}$.
+\end{question}
+Define
+\begin{align*}
+	\tau (i) = \begin{bmatrix}
+	\sqrt{-1} & 0 \\
+	0 & -\sqrt{-1}
+\end{bmatrix}, \qquad
+\tau (j) = \begin{bmatrix}
+0 & -1 \\
+1 & 0
+\end{bmatrix}, \qquad
+\tau (k) = \begin{bmatrix}
+0 & \sqrt{-1} \\
+\sqrt{-1} & 0
+\end{bmatrix}
+\end{align*}
+and extend it linearly to all of $\mathbb{H}$. The matrices $\tau(i), \tau(j), \tau(k)$ are called the \textbf{Pauli matrices}.
+\begin{question}
+	Explicitly write down $\tau(\mathbf{a})$ and show that $\tau(\mathbf{a}) \in SU(2)$ for all $\mathbf{a} \in u\mathbb{H}$.
+\end{question}
+\begin{question}
+	Show that $\tau(\mathbf{a}) \tau(\mathbf{b}) = \tau(\mathbf{a} \mathbf{b})$ and that $\norm{\mathbf{a}} = \det (\tau (\mathbf{a}))$. Conclude that $\norm{\mathbf{a}} \norm{\mathbf{b}} = \norm{\mathbf{a} \mathbf{b}}$.
+\end{question}
+
+\begin{question}
+	Combine the above results to show that $u \mathbb{H}$ is closed under multiplication and inverses and hence is a group. In fact, argue that $\tau$ is an isomorphism and hence $u \mathbb{H} \cong SU(2)$.
+\end{question}
+\begin{remark}
+	Note that as a topological space $u \mathbb{H}$ is isomorphic to $S^3 \subseteq \R^4$ and thus we've shown that $SU(2)$ is the 3 dimensional unit sphere!!!
+\end{remark}
+
+Quaternions (and hence $SU(2)$) also define rotations of spaces. For each $\mathbf{a} \in u \mathbb{H}$ we can define a transformation \begin{align*}
+	\Phi(\mathbf{a}): \mathbb{H} &\rightarrow \mathbb{H} \\
+	\mathbf{v} &\mapsto \mathbf{a}^{-1} \mathbf{v} \mathbf{a}
+\end{align*}
+
+\begin{question}
+	As a vector space over $\R$, the space $\mathbb{H} \cong \R^4$. Using this identification, show that $\Phi$ defines a group homomorphism $u \mathbb{H} \rightarrow GL_4(\R)$.
+\end{question}
+\newpage
+We can do better than this. We say that a quaternion $\mathbf{a}$ is \textbf{purely imaginary} if $\mathrm{Re}(\mathbf{a}) = 0$.
+
+\begin{question}
+	Show that $\mathbf{v}$ is purely imaginary and $\mathbf{a} \in u \mathbb{H}$ then $\mathbf{a}^{-1} v \mathbf{a}$ is also purely imaginary.
+\end{question}
+
+\begin{question}
+	As a vector space over $\R$, the space of purely imaginary quaternions is isomorphic to $\R^3$. Using this identification, show that $\Phi$ defines a group homomorphism $$\pi: u \mathbb{H} \rightarrow GL_3(\R)$$
+\end{question}
+
+\begin{question}
+	\label{q:double_cover}
+	Show that if $\Phi(\mathbf{a})(i) = i$, $\Phi(\mathbf{a})(j) = j$, $\Phi(\mathbf{a})(k) = k$ then $\mathbf{a} = \pm 1$. Conclude that the kernel of $\pi$ is isomorphic to $\Z/2$.
+\end{question}
+
+In fact, a much stronger statement is true: The image of $\pi$ is precisely $SO(3)$. We won't prove this as the proof is quite long (but easy). Hence $\pi$ defines a surjective homomorphism
+\begin{align*}
+	\pi : SU(2) \rightarrow SO(3)
+\end{align*}
+By Question \ref{q:double_cover} kernel of this homomorphism is $\Z/2$. We say that $SU(2)$ (and hence $u \mathbb{H}$) is a \textbf{double cover} of $SO(3)$.
+
+This has several important ramifications in various areas of mathematics, especially in physics. As we saw in Question \ref{q:so3_rotations}, every matrix in $SO(3)$ is a rotation matrix. In quantum mechanics, the group $SO(3)$ is the symmetry group that gives rise to angular momentum. Because $SU(2)$ double covers $SO(3)$, in the quantum world particles can have a \textbf{spin angular momentum} and there are two spin states for each angular momentum state. There is no classical analogue of this as the mathematical model for classical Newtonian mechanics does not inherently rely on linear algebra, but the one for quantum mechanics does.
+
+Because of this the group $SU(2)$ (and hence $u \mathbb{H}$) is also called the \textbf{spin group} $\mathrm{Spin}(3)$. In general, there exists a group that non-trivially double covers $SO(n)$ called $\mathrm{Spin}(n)$.
+
+$SU(2)$ is not the only linear group that leads to physically observable quantities in quantum mechanics. In the current standard model, the electroweak forces arise from the symmetry group $U(1) \times SU(2)$ and the strong nuclear forces arise from the symmetry group $SU(3)$.
+
+% \section{Symmetries of Spaces}
+% Now let's go back and understand why one would think of defining these matrix groups in the first place.
+%
+% $GL_n(\R)$ is simply the group of automorphisms of $\R^n$ which preserve the vector space structure.
+% $GL^+_3(\R)$ is the group of automorphisms
+
+\end{document}

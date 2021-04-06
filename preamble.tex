@@ -1,0 +1,107 @@
+% !TEX root = index.tex
+
+%basic AMS packages
+\documentclass[reqno,letter, 11pt,twoside]{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks = true,
+	linkcolor = blue,
+	anchorcolor = blue,
+	citecolor = blue,
+	filecolor = blue,
+	urlcolor = blue
+}
+\usepackage{epigraph}
+\usepackage{mathpazo}
+\usepackage{tcolorbox}
+\usepackage[margin=1in,includehead,includefoot]{geometry}
+\usepackage{fancyhdr}
+  \pagestyle{fancy}
+  \fancyhf{}
+  \fancyhead[LO]{Would I ever Lie Group to you?}
+  \fancyhead[RE]{Apurva}
+  \fancyhead[LE]{Mathcamp}
+  \cfoot{\thepage}
+
+\usepackage{graphicx}
+  \graphicspath{ {images/} }
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{color}
+\usepackage{mdframed}
+\usepackage{enumitem}
+  \setlist[enumerate]{label=\emph{\alph*})}% global settings, for all lists
+\usepackage{tikz}
+\usepackage[all,cmtip]{xy}
+\usepackage{multicol}
+% \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% \makeatletter
+% \@addtoreset{footnote}{section}
+% \makeatother
+
+%for setting the equation number to sync with the theorem numbers
+\numberwithin{equation}{section}
+\newcommand{\hint}[1]{\footnote{\raggedleft\rotatebox{180}{Hint: #1\hfill}}}
+
+%How does latex not have these?
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\maps}{Maps}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\Exists}{\exists}
+\DeclareMathOperator{\Forall}{\forall}
+\DeclareMathOperator{\res}{Res}
+\DeclareMathOperator{\mor}{Res}
+
+%simple operators which can be pretty useful
+\newcommand{\pr}[2][\:]{\frac{\partial #1}{\partial #2}}
+\newcommand{\innerp}[2]{\langle #1, #2 \rangle}
+\newcommand*\conj[1]{\overline{#1}}
+\newcommand*\norm[1]{\lVert #1 \rVert}
+
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+
+
+\theoremstyle{definition}
+\newtheorem{definition}[thm]{Definition}
+\newtheorem{example}[thm]{Example}
+\newtheorem{remark}[thm]{Remark}
+\newtheorem{ans}[thm]{Ans.}
+
+\newcounter{q}
+\newtheorem{question}[q]{Question.}
+\definecolor{light-gray}{gray}{0.95}
+\newenvironment{ques}
+{
+	\begin{tcolorbox}[colback=light-gray,arc=0pt,outer arc=0pt,boxrule=0.5pt]
+	 \begin{question}
+			}
+			{
+		\end{question}
+	\end{tcolorbox}
+}
+
+%Real numbers, complex numbers, etc.
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}_2}
+\newcommand{\U}{\mathcal{U}}
+\newcommand{\V}{\mathcal{V}}
+\renewcommand{\L}{\mathcal{L}}
+\renewcommand{\P}{\mathcal{P}}
+\newcommand{\B}{\mathcal{B}}
